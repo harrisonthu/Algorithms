@@ -1,0 +1,7 @@
+package edu.rit.pj2;
+
+public class Snippet {
+	
+	$ export CLASSPATH=.:/home/fac/ark/public_html/pj2.jar
+}
+

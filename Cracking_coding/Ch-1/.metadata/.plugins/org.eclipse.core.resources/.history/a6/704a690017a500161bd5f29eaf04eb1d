@@ -1,0 +1,136 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketAddress;
+
+import com.sun.prism.paint.Color;
+
+public class ViewProxy implements ModelListener{
+	
+
+   private Socket socket;
+   private DataOutputStream out;
+   private DataInputStream in;
+   private ViewListener viewListener;
+   
+   public ViewProxy(Socket socket) throws IOException
+      {
+      this.socket = socket;
+      socket.setTcpNoDelay (true);
+      out = new DataOutputStream (socket.getOutputStream());
+      in = new DataInputStream (socket.getInputStream());
+      }
+   
+   public void setViewListener(GobbleModel model)  {
+	   if (this.viewListener == null){
+		   this.viewListener = (ViewListener) model;
+		   new ReaderThread().start();
+      }
+   else
+      {
+      this.viewListener = (ViewListener) model;
+      }
+   }
+   
+
+   /**
+    * Report that the password cracking computation started.
+    *
+    * @exception  IOException
+    *     Thrown if an I/O error occurred.
+    */
+   public void started()throws IOException
+      {
+      out.writeByte ('G');
+      out.flush();
+      }
+   
+   
+   /**
+    * Report that the password cracking computation stopped.
+    *
+    * @exception  IOException
+    *     Thrown if an I/O error occurred.
+    */
+   public void stopped()throws IOException
+      {
+      out.writeByte ('S');
+      out.flush();
+      }
+   
+   
+   /**
+    * Class ReaderThread receives messages from the network, decodes them, and
+    * invokes the proper methods to process them.
+    *
+    * @author  Han Thu
+    * @version 01-November-2016
+    */
+   private class ReaderThread
+      extends Thread
+      {
+      public void run()
+         {
+         try
+            {
+            for (;;)
+               {
+               String session;
+               int r, c;
+               Color color;
+               byte b = in.readByte();
+               switch (b)
+                  {
+                  case 'G':		// Game
+                     session = in.readUTF();
+                     viewListener.join (ViewProxy.this, session);
+                     break;
+                  case 'M':		// Move
+                     r = in.readByte();
+                     c = in.readByte();
+                     break;
+                  case 'S':		// Terminate
+                     r = in.readByte();
+                     c = in.readByte();
+                     break;
+                  default:
+                     System.err.println ("Bad message");
+                     break;
+                  }
+               }
+            }
+         catch (IOException exc)
+            {
+            }
+         finally
+            {
+            try
+               {
+               socket.close();
+               }
+            catch (IOException exc)
+               {
+               }
+            }
+         }
+      }
+
+
+@Override
+public void terminate() throws IOException {
+	
+}
+
+@Override
+public void setPlayer(int p) throws IOException {
+	
+}
+
+@Override
+public void turnSwitch(int p) throws IOException {
+	// TODO Auto-generated method stub
+	
+}
+   
+}

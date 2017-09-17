@@ -1,0 +1,11 @@
+import java.io.IOException;
+
+public class ViewProxy implements ModelListener {
+
+	@Override
+	public void reportState(String location, PollSensorState state) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+}

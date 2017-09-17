@@ -1,0 +1,16 @@
+import java.io.IOException;
+
+/**
+ * Created by hmt4224 on 4/8/2017.
+ */
+
+
+interface ViewListener {
+
+    void start() throws IOException;
+
+    void quit();
+
+    void pressedletters(char c, int turns);
+
+}

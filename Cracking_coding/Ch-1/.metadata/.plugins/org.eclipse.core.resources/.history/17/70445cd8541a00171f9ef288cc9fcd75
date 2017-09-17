@@ -1,0 +1,43 @@
+
+public class a3q3p1 {
+	
+	
+	public 
+	
+	
+	public boolean validArray(int[] nums){
+		boolean flag = false;
+		if(nums.length <=1){
+			flag = true;
+			return flag;
+		int low  = nums[0];
+		int high = nums[nums.length-1];
+		if(nums[high] ==0){
+			return flag;
+		}	 
+			   // Traverse through all the points reachable from arr[l]. Recursively
+			   // get the minimum number of jumps needed to reach arr[h] from these
+			   // reachable points.
+			   for (int i = low+1; i <= high && i <= low + nums[low]; i++)
+			   {
+				   
+			   }
+			 
+			}
+		
+		
+		return flag;
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	
+
+}

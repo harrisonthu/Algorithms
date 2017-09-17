@@ -1,0 +1,42 @@
+import java.math.BigInteger;
+
+//TODO runnable
+// TODO
+public class ComputeThread implements Runnable {	// 
+	int index;
+	Monitor mymonitor;
+	BigInteger a;
+	BigInteger b;
+	
+	
+	
+	// TODO ask Monitor to be static (or) put it in argument
+	// TODO ask professor is it allowed to add 2 biginterger arguments in the construtor
+	public ComputeThread(int index, Monitor mymonitor, BigInteger a, BigInteger b){
+		this.index = index;
+		this.mymonitor = mymonitor;
+		this.a = a;
+		this.b = b;
+		
+	}
+
+
+	@Override
+	public void run() {
+		if(index == 0){	// fa,b(0) = a 
+			mymonitor.putValue(index, a);
+		}else if(index == 1){
+			mymonitor.putValue(index, b);
+		}else{
+			try {
+				mymonitor.putValue(index, mymonitor.getValue(index-1).add(mymonitor.getValue(index-2)));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+
+		
+	}
+	
+	}
+}

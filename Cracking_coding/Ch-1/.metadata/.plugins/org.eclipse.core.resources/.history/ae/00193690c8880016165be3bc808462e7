@@ -1,0 +1,81 @@
+import java.math.BigInteger;
+
+import edu.rit.pj2.Loop;
+import edu.rit.pj2.Task;
+
+
+
+public class Order extends Task {
+	
+
+public void main(String args[]){
+	
+	//int a,p;
+	//int b,g;
+	BigInteger p;
+	BigInteger g;
+	
+    if (args.length != 2){
+  	  usage();
+    }
+    else{
+    	p = new BigInteger(args[0]);
+    	g = new BigInteger(args[1]);
+    	if(p.intValue()>=2){
+    		if(!p.isProbablePrime(64)){
+    			System.err.println("P must be Prime");
+    			usage();
+    		}
+    	}
+    	else{
+    		System.err.println("P must be greater than 2");
+    		usage();
+    	}
+    	
+    	if(!(g.intValue()>=1 && g.intValue() <= p.intValue()-1)){
+    		System.err.println("it must be an integer (type int) in the range 1 ≤ g ≤ p−1");
+    		usage();
+    	}
+    	
+    	
+        //final BigInteger[] parr = new BigInteger[p-1];
+    	
+        parallelFor (1, p.intValue()-1) .exec (new Loop()
+        {
+            public void run (int i) {
+                BigInteger exponent = new BigInteger(String.valueOf(i));
+                parr[i-1] = bg.modPow(exponent, bp);
+            }
+        });
+
+        BigInteger compare = new BigInteger("1");
+        for(int i=0; i<parr.length; i++){
+            if(parr[i].equals(compare)){
+                System.out.println(i+1);
+                terminate(0);
+            }
+        }
+    	
+    }
+
+	
+}
+
+
+static boolean isPrime(int n) {
+    for(int i=2;2*i<n;i++) {
+        if(n%i==0)
+            return false;
+    }
+    return true;
+}
+
+private static void usage(){
+    System.exit (0);
+}
+
+
+    
+    
+}
+

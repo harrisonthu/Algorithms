@@ -1,0 +1,85 @@
+//******************************************************************************
+//
+// File:    FireSensorState.java
+// Package: ---
+// Unit:    Enum FireSensorState
+//
+// This Java source file is copyright (C) 2016 by Alan Kaminsky. All rights
+// reserved. For further information, contact the author, Alan Kaminsky, at
+//
+// This Java source file is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 3 of the License, or (at your option) any
+// later version.
+//
+// This Java source file is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
+//
+// You may obtain a copy of the GNU General Public License on the World Wide Web
+// at http://www.gnu.org/licenses/gpl.html.
+//
+//******************************************************************************
+
+import java.awt.Color;
+
+/**
+ * Enum FireSensorState enumerates the possible states of a fire sensor in the
+ * Fire Alarm Simulation.
+ *
+ * @author	Alan Kaminsky
+ * 		Han Min Thu
+ * 			
+ * @version 22-November-2016
+ */
+public enum PollSensorState
+   {
+   Agree ("All clear"),   Disagree ("Communication failure");
+
+// Hidden data members.
+
+   private String label;
+
+// Hidden constructors.
+
+   private PollSensorState
+      (String label)
+      {
+      this.label = label;
+      }
+
+// Exported operations.
+
+   /**
+    * Get the label for this fire sensor state.
+    *
+    * @return  Label.
+    */
+   public String label()
+      {
+      return label;
+      }
+
+   /**
+    * Returns a string version of this fire sensor state.
+    */
+   public String toString()
+      {
+      return label;
+      }
+
+   /**
+    * Get the Poll sensor state enumeral corresponding to the given value.
+    *
+    * @param  Agree  True if there's a fire, false if not. (Agree or Disagree)
+    *
+    * @return  Poll sensor state enumeral.
+    */
+   public static PollSensorState stateFor
+      (boolean poll)
+      {
+      return poll ? Agree : Disagree;
+      }
+
+   }

@@ -1,0 +1,9 @@
+
+public class GobbleClient {
+	static GobbleUI gobble;
+
+	public static void main(String[] args) {
+		gobble = GobbleUI.initialize();
+	}
+
+}

@@ -1,0 +1,54 @@
+import java.util.Comparator;
+
+/**
+ * A thread class that computes one and only one array element and stores it in the monitor.
+ * There is a Comparator function in this thread to sort each element in the input, including
+ * 
+ */
+
+public class ComputeThread implements Comparator, Runnable {	// 
+	int index;
+	Monitor mymonitor;
+	
+	
+	/*
+	 * Constructor class for Compute Thread
+	 * @param  index		index number for the array
+	 * @param  mymonitor	create monitor instance
+	 * @return a			BigInteger type value a
+	 * @return b			BigInteger tyep value b
+	 */
+	public ComputeThread(int index, Monitor mymonitor){
+		this.index = index;
+		this.mymonitor = mymonitor;
+	}
+
+
+	@Override
+	/*
+	 * run method to be called in that separately executing thread.
+	 * If user type in n == 0, return just value a.
+	 * If user type in n == 1, return just value b.
+	 * If user type in 
+	 */
+	public void run() {
+		if(index == 0){	
+			mymonitor.putValue(index, a);
+		}else if(index == 1){
+			mymonitor.putValue(index, b);
+		}else{
+			try {
+				mymonitor.putValue(index, mymonitor.getValue(index-1).add(mymonitor.getValue(index-2)));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+		}
+
+		
+	}
+	
+	}
+}
+
+
+
+

@@ -1,0 +1,26 @@
+
+
+
+//TODO runnable
+// TODO ASK professor for hints
+public class ComputeThread implements Runnable {	// 
+	int index;
+	Monitor mymonitor;
+	
+	
+	public ComputeThread(int index){
+		this.index = index;
+	}
+
+
+	@Override
+	public void run() {
+		
+	}
+	
+	
+	
+	
+	
+
+}

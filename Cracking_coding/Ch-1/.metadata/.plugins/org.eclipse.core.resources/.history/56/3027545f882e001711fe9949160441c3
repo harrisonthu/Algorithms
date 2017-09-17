@@ -1,0 +1,34 @@
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import edu.rit.util.Hex;
+
+public class Leaker {
+
+	public static void main(String[] args) {
+		if (args.length != 6)
+			usage();
+		String rhost = args[0];
+		int rport = Integer.parseInt(args[1]);
+		String lhost = args[2];
+		int lport = Integer.parseInt(args[3]);
+		int key = Hex.toByteArray();
+
+		ServerSocket serversocket = new ServerSocket();
+		serversocket.bind(new InetSocketAddress(rhost, rport));
+		while (true) {
+			Socket socket = serversocket.accept();
+			ViewProxy client = new ViewProxy();
+		}
+	}
+
+	/**
+	 * Print a usage message and exit.
+	 */
+	private static void usage() {
+		System.err.println("Usage: java WordzServer <host> <port> <file>");
+		System.exit(1);
+	}
+
+}

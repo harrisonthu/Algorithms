@@ -1,0 +1,72 @@
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.SocketException;
+import java.nio.charset.Charset;
+
+import edu.rit.util.Hex;
+
+public class Leaker {
+	
+	private static DatagramSocket mb;
+	private SocketAddress destination;
+	private static RC4 rc4;
+	
+	
+	public static void sendMessage (String senderlocation, SocketAddress destination) throws IOException{
+        ByteArrayOutputStream baos = new ByteArrayOutputStream () ;
+        DataOutputStream out = new DataOutputStream (baos) ;
+        
+        out.close () ;
+        byte[] buf = baos.toByteArray () ;
+        DatagramPacket packet = new DatagramPacket (buf, buf.length, destination);
+        mb.send (packet) ;
+		
+	}
+
+	public static void main(String[] args) throws SocketException {
+		if (args.length != 6)
+			usage();
+		String rhost = args[0];
+		int rport = Integer.parseInt(args[1]);
+		String lhost = args[2];
+		int lport = Integer.parseInt(args[3]);
+		byte[] key = Hex.toByteArray(args[4]);
+		String msg = new String(args[5]);
+
+		DatagramSocket mailbox = new DatagramSocket(new InetSocketAddress(lhost, lport));
+		//creating nonce
+        byte[] nonce = new byte[16];
+        byte[] b = msg.getBytes(Charset.forName("UTF-8"));
+        byte[] value = new byte[16+b.length];
+        
+        for(int i = 0; i < 16; i++){
+        	nonce[i] = (byte)(Math.random() * 256);
+        	value[i] = nonce[i];
+        }
+        
+        rc4.setKey(key, nonce);
+        for(int i = 0; i < b.length; i++){
+        	value[i+16] = (byte) rc4.encrypt(b[i]);
+        }
+	}
+	
+	
+	
+	
+
+	/**
+	 * Print a usage message and exit.
+	 */
+	private static void usage() {
+		System.err.println("Usage: java Leaker <host> <port> <file>");
+		System.exit(1);
+	}
+
+}

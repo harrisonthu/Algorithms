@@ -1,0 +1,39 @@
+package chapter1;
+import java.util.Scanner;
+
+public class problem5 {
+	
+	
+	
+	public static String compressString(String str){
+		String mystr = "";
+		char last = str.charAt(0);
+		int counter =1;
+		for(int i=1;i<str.length();i++){
+			if(str.charAt(i)== last){
+				counter++;
+			}
+			else{
+				mystr += last + ""+ counter;
+				last = str.charAt(i);
+				counter = 1;
+			}
+		}
+//		
+//		if(result.length()<str.length()){
+//			return str;
+//		}
+		
+		return mystr;
+	}
+
+	public static void main(String[] args) {
+		String str = "abbccccccde";
+		//Scanner sc = new Scanner(System.in);
+		//String str= sc.nextLine();
+		System.out.println(compressString(str));
+
+		
+	}
+
+}

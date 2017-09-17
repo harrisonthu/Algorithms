@@ -1,0 +1,22 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+/**
+ * Class ModelProxy provides the network proxy for the model object in the
+ * Gobble Game Application. The model proxy resides in the client program and
+ * communicates with the server program.
+ *
+ * @author  Han Min Thu
+ * @version 20-October-2016
+ */
+public class ModelProxy implements ViewListener {
+	   private Socket socket;
+	   private ObjectOutputStream out;
+	   private ObjectInputStream in;
+	   private ModelListener modelListener;
+
+
+}

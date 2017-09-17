@@ -1,0 +1,27 @@
+
+public class ViewProxy implements ModelListener {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(String name, String words, String guesses, boolean whowins) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void quit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

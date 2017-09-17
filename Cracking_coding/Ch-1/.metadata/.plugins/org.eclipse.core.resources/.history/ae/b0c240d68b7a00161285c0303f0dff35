@@ -1,0 +1,52 @@
+import java.math.BigInteger;
+import java.util.concurrent.SynchronousQueue;
+
+/*
+ * A thread that computes one and only one array element and stores it in the monitor.
+ * There is a separate instance of this thread for each array element, including
+ * array elements 0 and 1.
+ */
+
+public class ComputeThread implements Runnable {	// 
+	int index;
+	Monitor mymonitor;
+	BigInteger a;
+	BigInteger b;
+	
+	
+	/*
+	 *
+	 * Constructor class for Compute Thread
+	 * @param  url  an absolute URL giving the base location of the image
+	 * @param  name the location of the image, relative to the url argument
+	 * @return      the image at the specified URL
+	 * @see         Image
+	 */
+	public ComputeThread(int index, Monitor mymonitor, BigInteger a, BigInteger b){
+		this.index = index;
+		this.mymonitor = mymonitor;
+		this.a = a;
+		this.b = b;
+		
+	}
+
+
+	@Override
+	public void run() {
+		if(index == 0){	// fa,b(0) = a 
+			mymonitor.putValue(index, a);
+		}else if(index == 1){
+			mymonitor.putValue(index, b);
+		}else{
+			try {
+				mymonitor.putValue(index, mymonitor.getValue(index-1).add(mymonitor.getValue(index-2)));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+
+		
+	}
+	
+	}
+}

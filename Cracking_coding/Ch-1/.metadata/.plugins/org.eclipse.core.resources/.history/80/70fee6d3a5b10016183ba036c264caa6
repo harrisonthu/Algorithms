@@ -1,0 +1,23 @@
+
+/*
+ * PollModel class
+ */
+
+public class PollModel implements ViewListener {
+	String question = "";
+	
+	
+	
+	
+	public void vote(fromwhere,towhere,ptime){
+		
+	}
+	
+	public void ChangeQuestion(newquestion,ptime){
+		
+	}
+	
+	
+	
+	
+}

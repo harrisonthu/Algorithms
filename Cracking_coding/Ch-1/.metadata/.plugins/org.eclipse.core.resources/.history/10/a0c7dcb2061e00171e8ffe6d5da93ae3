@@ -1,0 +1,177 @@
+import java.awt.Color;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+/**
+ * 
+ * ModelProxy class implementing ViewListener
+ * @author han
+ *
+ */
+public class ModelProxy implements ViewListener {
+
+	private Socket socket;
+	private ObjectInputStream in;
+	private ObjectOutputStream out;
+	private ModelListener modelListener;
+
+	public ModelProxy(Socket socket) throws IOException {
+		this.socket = socket;
+		out = new ObjectOutputStream(socket.getOutputStream());
+		in = new ObjectInputStream(socket.getInputStream());
+	}
+
+	/**
+	 * Set the model listener object for this model proxy.
+	 * 
+	 * @param modelListener
+	 *            Model Listener
+	 */
+	public void setModelListener(ModelListener modelListener) {
+		this.modelListener = modelListener;
+		new ReaderThread().start();
+	}
+
+	/**
+	 * Join the session.
+	 * 
+	 * @param proxy
+	 *            Reference to view proxy object.
+	 * @param n
+	 *            The player name.
+	 * @throws IOException
+	 *             thrown if an I/O error occurred
+	 */
+	@Override
+	public void join(ViewProxy proxy, String n) throws IOException {
+		sendMessage(new Message("J", new String[] { n }));
+	}
+
+
+	/**
+	 * Player quit.
+	 *
+	 * @throws IOException
+	 *             thrown if an I/O error occurred
+	 */
+	@Override
+	public void terminate() throws IOException {
+		sendMessage(new Message("Q", null));
+	}
+
+	/**
+	 * Send the message to the server.
+	 *
+	 * @param message
+	 *            Message
+	 */
+	public void sendMessage(Message message) {
+		try {
+			out.writeObject(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Class ReaderThread receive message from network and listen over the network.
+	 *
+	 */
+	private class ReaderThread extends Thread {
+		public void run() {
+			try {
+				for (;;) {
+					
+					// Reading message from DataObject 
+					Message m = (Message) in.readObject();
+					String type = m.getType();
+					String[] args = m.getArgs();
+
+					int r;
+					int c;
+					if (type.equals("P1")) {
+						r = Integer.parseInt(args[0]);
+						c = Integer.parseInt(args[1]);
+						modelListener.player1worm(r, c);
+					} else if (type.equals("P2")) {
+						r = Integer.parseInt(args[0]);
+						c = Integer.parseInt(args[1]);
+						modelListener.player2worm(r, c);
+					} else if (type.equals("Y")) {
+						
+						// Listen turn between players
+						modelListener.yourTurn();
+					} else if (type.equals("O")) {
+						String name = args[0];
+						modelListener.otherTurn(name);
+					} else if (type.equals("F")) {
+						r = Integer.parseInt(args[0]);
+						c = Integer.parseInt(args[1]);
+						boolean b = Boolean.parseBoolean(args[2]);
+						modelListener.food(r, c, b);
+					} else if (type.equals("YW")) {
+						modelListener.youWin();
+					} else if (type.equals("YL")) {
+						String name = args[0];
+						modelListener.youLoose(name);
+					} else if (type.equals("D")) {
+						modelListener.draw();
+					} else if (type.equals("E")) {
+						r = Integer.parseInt(args[0]);
+						c = Integer.parseInt(args[1]);
+						modelListener.eat(r, c);
+					} else if (type.equals("J2")) {
+						modelListener.p2joined();
+					} else if (type.equals("N")) {
+						modelListener.newGamed();
+					} else if (type.equals("Q")) {
+						modelListener.terminate();
+					}
+				}
+			} catch (EOFException exc) {
+
+			} catch (Exception exc) {
+				exc.printStackTrace();
+			} finally {
+				try {
+					socket.close();
+				} catch (IOException exc) {
+
+				}
+			}
+		}
+	}
+
+	@Override
+	public void gobble(int r, int c, Color color) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void move(Object object, int r, int c) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void quit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pressedletters(char c, int turns) {
+		// TODO Auto-generated method stub
+		
+	}
+}

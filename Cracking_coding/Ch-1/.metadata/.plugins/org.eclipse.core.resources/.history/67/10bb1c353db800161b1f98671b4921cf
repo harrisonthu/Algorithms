@@ -1,0 +1,102 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+
+public class ResponderModel implements ViewListener, ModelListener,Runnable{
+	
+	String question = "";
+	private long ptime;
+	private PollState currentvote; 
+	private ModelListener responderview;
+	private ViewListener pollmodel;
+	PollState myvote;
+
+	private ScheduledExecutorService pool;
+	private ViewListener viewListener;
+
+	private ModelListener modelListener;
+	private String host;
+	private int attempts;
+	private ScheduledFuture<?> timeout;
+
+	private static final int RETRY_INTERVAL = 1; // seconds
+
+	
+	public ResponderModel(){
+		this.myvote = PollState.NEITHER;
+		pool = Executors.newScheduledThreadPool(1);
+	}
+	
+	public void setResponderView(ModelListener view){
+		this.responderview = view;
+	}
+	
+	
+	public void vote(PollState lastvote, PollState newvote, long questiontime) throws IOException {
+		pollmodel.vote(myvote, newvote, ptime);
+		this.currentvote = newvote;
+	}
+	
+	
+	//TODO
+	public void ChangeQuestion(String newQuestion, long questiontime) throws IOException {
+		if(questiontime <ptime){
+			responderview.changeQuestion(newQuestion, questiontime);
+		}
+	}
+	
+	public void setPollMode(ViewListener model){
+		this.pollmodel = model;
+	}
+	
+	@Override
+	public synchronized void run() {
+		try{
+			viewListener.vote(currentvote, myvote, ptime);
+		}
+		catch (IOException exc){
+			try{
+				responderview.queryFailed(host, "I/O error");
+			}
+			catch(Exception exc2){
+			}
+		}
+	}
+
+
+	@Override
+	public synchronized void querySucceeded(String host, byte[] address) throws IOException {
+		if(timeout == null || !this.host.equals(host)) return;
+		
+		timeout.cancel(false);
+		timeout = null;
+		responderview.querySucceeded(host, address);
+	}
+
+	/**
+	 * Report that a DNS query failed.
+	 *
+	 * @param  host     Host name that was queried.
+	 * @param  message  Error message.
+	 *
+	 * @exception  IOException
+	 *     Thrown if an I/O error occurred.
+	 */
+	@Override
+	public void changeQuestion(String newQuestion, long questiontime) throws IOException {
+		question = newQuestion;
+		ptime = System.currentTimeMillis();
+	}
+
+	@Override
+	public void queryFailed(String host, String message) throws IOException {
+		if(timeout ==null || !this.host.equals(host)) return;
+		
+		timeout.cancel(false);
+		timeout = null;
+		responderview.queryFailed(host, message);
+	}
+	
+}

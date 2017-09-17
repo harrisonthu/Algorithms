@@ -1,0 +1,12 @@
+/*
+ * Poll Model class that acts as ViewListener
+ */
+public interface PollModel {
+	
+	public vote(fromwhere,towhere,ptime);
+	
+	public ChangeQuestion(newQuestion, ptime);
+	
+	private question
+
+}

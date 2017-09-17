@@ -1,0 +1,6 @@
+/*
+ * Poll Model class that acts as ViewListener
+ */
+public interface PollModel {
+
+}

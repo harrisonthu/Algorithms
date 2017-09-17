@@ -1,0 +1,18 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+
+/**
+ * Class ViewProxy provides the network proxy for the view object in the
+ * Gobble Game Application. The view proxy resides in the server program and
+ * communicates with the client program.
+ *
+ * @author  Han Min Thu
+ * @version 20-October-2016
+ */
+
+public class ViewProxy implements ModelListener{
+	
+	
+}

@@ -1,0 +1,17 @@
+
+import java.io.IOException;
+
+
+public class PrintThread implements Runnable{
+	
+	int n;
+	public PrintThread(int n){
+	this.n = n;
+	}
+	
+	 public void run(){	 
+		 // one line of code
+		 System.out.println(getValue(n));
+	 }
+
+}

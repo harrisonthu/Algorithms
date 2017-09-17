@@ -1,0 +1,17 @@
+
+/**
+ * Class ModelProxy provides the network proxy for the model object in the
+ * Fire Alarm Simulation. The model proxy resides in the client program and
+ * communicates with the server program.
+ *
+ * @author  Alan Kaminsky
+ * @version 14-Oct-2016
+ */
+
+public class ModelProxy implements ViewListener{
+	
+	
+	
+	
+
+}

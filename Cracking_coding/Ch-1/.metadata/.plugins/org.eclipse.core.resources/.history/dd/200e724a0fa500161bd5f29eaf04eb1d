@@ -1,0 +1,20 @@
+import java.util.LinkedList;
+
+public class GobbleModel {
+	
+	
+	
+	public GobbleModel(){
+		
+		
+	}
+
+
+	public void setModelListener(ViewProxy proxy) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+}

@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by hmt4224 on 4/8/2017.
+ */
+public class Initialize {
+    WordzUI wordzui1;
+    WordzUI wordzui2;
+//    ModelListener m1;
+//    ModelListener m2;
+
+
+    public static void main(String[] args){
+        List<String> wordlis = new ArrayList<String>();
+        wordlis.add("BANANA");
+        wordlis.add("APPLE");
+        wordlis.add("ORANGE");
+        wordlis.add("SAMSUNG");
+        Model mymodel;
+        mymodel= new Model(wordlis);
+        mymodel.setModelListener(WordzUI.create("Han"),WordzUI.create("Kyle"));
+        mymodel.start();
+
+
+    }
+}

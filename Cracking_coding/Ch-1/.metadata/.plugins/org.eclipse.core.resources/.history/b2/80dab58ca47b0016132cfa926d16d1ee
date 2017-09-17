@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class TowerOfHanoi {
+
+	public static String hanoi(int nDisks, int fromPeg, int toPeg){
+		
+	 	int helpPeg;
+	 	String Sol1, Sol2, MyStep, mySol;   // Contains moves
+	 	
+	 	if ( nDisks == 1 ){
+	 		
+	 		return fromPeg + " -> " + toPeg + "\n";
+	 	}else{
+	 		
+	 	    helpPeg = 6 - fromPeg - toPeg;    // Because fromPeg + helpPeg + toPeg = 6    
+	 	    Sol1 = hanoi(nDisks-1, fromPeg, helpPeg);    
+	 	    MyStep = fromPeg + " -> " + toPeg + "\n";      
+	 	    Sol2 = hanoi(nDisks-1, helpPeg, toPeg);      
+		    mySol = Sol1 + MyStep + Sol2;     // + = String concatenation !
+	 	    return "mySol" + mySol;
+ 	  }
+	}
+
+	public static void main(String[] args){
+		
+		   int n, from, to;
+	       //TowerOfHanoi towersOfHanoi = new TowerOfHanoi();
+	       Scanner sc = new Scanner(System.in);
+	       String line;
+	       String[] lineVector;
+
+	       line = sc.nextLine(); //read 1,2,3
+
+	       lineVector = line.split(",");
+
+	       n=Integer.parseInt(lineVector[0]);
+	       from=Integer.parseInt(lineVector[1]);
+	       to=Integer.parseInt(lineVector[2]);
+	       
+	       System.out.println("n: "+n);
+	       System.out.println("from: "+from);
+	       System.out.println("to: "+to);
+	       
+	       System.out.println(hanoi(n,from,to));
+	   }
+		
+	}

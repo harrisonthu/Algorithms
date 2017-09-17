@@ -1,0 +1,108 @@
+
+import java.awt.Color;
+import java.io.IOException;
+import java.util.HashMap;
+
+/**
+ * Class SessionManager maintains the sessions' model objects in the Gobble
+ * network server.
+ *
+ * @version 21-Jan-2010
+ */
+public class SessionManager implements ViewListener {
+
+	// Hidden data members.
+	private GobbleModel gmodel;
+
+	// Exported constructors.
+
+	/**
+	 * Construct a new session manager.
+	 */
+	public SessionManager() {
+	}
+
+	// Exported operations.
+
+	/**
+	 * Join the given session.
+	 *
+	 * @param proxy
+	 *            Reference to view proxy object.
+	 * @param session
+	 *            Session name.
+	 *
+	 * @exception IOException
+	 *                Thrown if an I/O error occurred.
+	 */
+	public synchronized void join(ViewProxy proxy, String session) throws IOException {
+		if (gmodel == null) {
+			gmodel = new GobbleModel();
+		}
+
+	}
+
+	/**
+	 * Place a marker on the Go board.
+	 *
+	 * @param r
+	 *            Row on which to place the marker.
+	 * @param c
+	 *            Column on which to place the marker.
+	 * @param color
+	 *            Marker color.
+	 */
+	public void addMarker(int r, int c, Color color) {
+	}
+
+	/**
+	 * Remove a marker from the Go board.
+	 *
+	 * @param r
+	 *            Row from which to remove the marker.
+	 * @param c
+	 *            Column from which to remove the marker.
+	 */
+	public void removeMarker(int r, int c) {
+	}
+
+	/**
+	 * Clear the Go board.
+	 */
+	public void clearBoard() {
+	}
+
+	/**
+	 * Start the Gobble from board.
+	 *
+	 * @param r
+	 *            Row from which to remove the marker.
+	 */
+	@Override
+	public void start(byte[] hash) throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Quit/Terminate the Gobble game from running.
+	 *
+	 */
+	@Override
+	public void terminate() throws IOException {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Keep tracking of Player moves.
+	 *
+	 * @param row Row position from which to gobble the food from board.
+	 * @param col Column position from which to gobble the food from board.
+	 */
+	public void moves(int row, int col) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,76 @@
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketAddress;
+
+/**
+ * Class ModelProxy provides the network proxy for the model object in the
+ * Fire Alarm Simulation. The model proxy resides in the client program and
+ * communicates with the server program.
+ *
+ * @author  Alan Kaminsky
+ * 			Han Min Thu
+ * @version 14-Oct-2016
+ */
+
+public class ModelProxy implements ViewListener{
+
+	// Hidden data members.
+
+	   private DatagramSocket mailbox;
+	   private SocketAddress destination;
+
+	// Exported constructors.
+
+	   /**
+	    * Construct a new model proxy.
+	    *
+	    * @param  mailbox      Mailbox.
+	    * @param  destination  Destination server mailbox address.
+	    */
+	   public ModelProxy
+	      (DatagramSocket mailbox,
+	       SocketAddress destination)
+	      {
+	      this.mailbox = mailbox;
+	      this.destination = destination;
+	      }
+
+	// Exported operations.
+
+	   /**
+	    * Report the state of a fire sensor.
+	    *
+	    * @param  location   Fire sensor location.
+	    * @param  timestamp  Time stamp.
+	    * @param  fire       True if there's a fire, false if not.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void report
+	      (String location,
+	       long timestamp,
+	       boolean pollresult)
+	      throws IOException
+	      {
+	      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	      DataOutputStream out = new DataOutputStream (baos);
+	      out.writeByte ('R');
+	      out.writeUTF (location);
+	      out.writeLong (timestamp);
+	      out.writeBoolean (pollresult);
+	      out.close();
+	      byte[] payload = baos.toByteArray();
+	      mailbox.send
+	         (new DatagramPacket (payload, payload.length, destination));
+	      }
+
+	   }
+
+	
+	
+
+}

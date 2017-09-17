@@ -1,0 +1,12 @@
+
+/**
+ * Enum PollState enumerates the possible states of a poll state in the
+ * Poll Simulation.
+ * 
+ * @author han
+ *
+ */
+public enum PollState { 
+	
+
+}

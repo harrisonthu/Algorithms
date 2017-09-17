@@ -1,0 +1,39 @@
+import java.math.BigInteger;
+
+public class monitor {
+	BigInteger[] F;
+	
+	public monitor(int n){
+		F = new BigInteger[n+1];
+	}
+	
+	/*
+	 * Puts the given value into array element i. 
+	 * It is an error if a value has already been put into array element i.
+	 * @param  i      index of the BigInteger array F
+	 * @param  value  the value to be inserted into BigInteger array F
+	 * @return  
+	 */
+	public void putValue (int i, BigInteger value){
+		if(F[i] != null){
+			throw new RuntimeException("A value has already been in array !");
+		}
+		F[i]= value;
+	}
+	
+	/*
+	 * This method returns the value stored in array element i. 
+	 * This method does not return until array element i has been put.
+	 * @param  i  index of the BigInteger array F
+	 * @return    a value that is BigInteger type
+	 */
+	
+	public BigInteger getValue(int i) throws InterruptedException{
+		while(F[i] == null){
+			wait();
+		}
+		return F[i];
+	}
+	
+	
+}

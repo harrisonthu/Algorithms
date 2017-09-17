@@ -1,0 +1,35 @@
+import java.math.BigInteger;
+
+
+
+public class Fib {
+
+	
+	/*
+	 * A main program. 
+	 * The main program must start the threads in this order: first the output printing thread, 
+	 * then the thread that computes the last array element, then the thread that computes the next-to-last array element,
+	 * and so on backwards through the array elements. The main program must not wait for the threads to terminate
+	 */
+	public static void main(String[] args)throws Throwable{
+	      if (args.length != 4){
+	    	  System.exit(1);
+	      }
+
+	      if(args.length ==2){
+	    	  
+	      }
+	      String a_temp = args[0];	// $ java Fib 5 7 100
+	      BigInteger a = new BigInteger(a_temp);
+	      String b_temp = args[1];
+	      BigInteger b = new BigInteger(b_temp);
+	      int N = Integer.parseInt(args[0]);
+	      
+	      
+		
+		
+		
+		
+	}
+
+}

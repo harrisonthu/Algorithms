@@ -1,0 +1,35 @@
+import java.math.BigInteger;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+
+public class GobbleServer {
+
+	
+	
+	/*
+	 * Main Program
+	 */
+	public static void main(String[] args) throws Exception {
+		if (args.length != 2){
+            System.err.println("Not enough Argument!");
+            usage();
+        }
+		String host = args[0];
+		int port = Integer.parseInt(args[1]);
+		
+		ServerSocket serversocket = new ServerSocket();
+		serversocket.bind(new InetSocketAddress (host,port));
+		
+		for (;;){
+			Socket socket 
+		}
+}
+	
+	private static void usage(){
+		System.err.println("Usage: java GobbleServer <host> <port>");
+		System.exit(1);
+	}
+	
+}
+	
+	

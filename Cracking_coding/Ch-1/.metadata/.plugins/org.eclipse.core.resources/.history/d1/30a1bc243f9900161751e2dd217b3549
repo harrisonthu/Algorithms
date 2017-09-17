@@ -1,0 +1,49 @@
+import java.math.BigInteger;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+
+
+/**
+ * Class GobbleServer is the server main program for the Gobble
+ * application. The command line arguments specify the host and port to which
+ * the server should listen for connections.
+ * 
+ * Usage: java GobbleServer host port
+ *
+ */
+public class GobbleServer {
+	
+	/*
+	 * Main Program
+	 * 
+	 * The server program is run with this command:
+	 * 
+	 *  java GobbleServer <host> <port>
+	 */
+	public static void main(String[] args) throws Exception {
+		if (args.length != 2){
+            System.err.println("Not enough Argument!");
+            usage();
+        }
+		String host = args[0];
+		int port = Integer.parseInt(args[1]);
+		
+		ServerSocket serversocket = new ServerSocket();
+		serversocket.bind(new InetSocketAddress (host,port));
+		
+		for (;;){
+			Socket socket = serversocket.accept();
+			ViewProxy proxy = new ViewProxy (socket);
+		}
+}
+	
+	private static void usage(){
+		System.err.println("Usage: java GobbleServer <host> <port>");
+		System.exit(1);
+	}
+	
+}
+	
+	

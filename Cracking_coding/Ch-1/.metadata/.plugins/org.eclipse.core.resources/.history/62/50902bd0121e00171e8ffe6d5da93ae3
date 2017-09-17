@@ -1,0 +1,46 @@
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+/**
+ * Created by hmt4224 on 4/8/2017.
+ */
+public class WordzServer {
+	ServerSocket ser;
+	Model mod;
+	
+	
+	
+
+	/**
+	 * Main program.
+	 */
+	public static void main(String[] args) throws Exception {
+		if (args.length != 2)
+			usage();
+		String host = args[0];
+		int port = Integer.parseInt(args[1]);
+
+		ServerSocket serversocket = new ServerSocket();
+		serversocket.bind(new InetSocketAddress(host, port));
+		
+		
+
+//		for (;;) {
+//			Socket socket = serversocket.accept();
+//			ViewProxy proxy = new ViewProxy(socket);
+//			PasswordCrackModel model = new PasswordCrackModel();
+//			model.setModelListener(proxy);
+//			proxy.setViewListener(model);
+		}
+	}
+
+	/**
+	 * Print a usage message and exit.
+	 */
+	private static void usage() {
+		System.err.println("Usage: java Wordz <host> <port>");
+		System.exit(1);
+	}
+
+}

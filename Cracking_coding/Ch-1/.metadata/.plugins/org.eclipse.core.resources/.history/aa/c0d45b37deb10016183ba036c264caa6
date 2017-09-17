@@ -1,0 +1,72 @@
+//******************************************************************************
+//
+// File:    PollServer.java
+// Package: ---
+// Unit:    Class DnsServer
+//
+// This Java source file is copyright (C) 2016 by Alan Kaminsky. All rights
+// reserved. For further information, contact the author, Alan Kaminsky, at
+// ark@cs.rit.edu.
+//
+// This Java source file is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 3 of the License, or (at your option) any
+// later version.
+//
+// This Java source file is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
+//
+// You may obtain a copy of the GNU General Public License on the World Wide Web
+// at http://www.gnu.org/licenses/gpl.html.
+//
+//******************************************************************************
+
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+
+/**
+ * Class DnsServer is the server main program for the DNS application.
+ * <P>
+ * Usage: <TT>java PollServer <I>serverhost</I> <I>serverport</I></TT>
+ *
+ * @author  Alan Kaminsky
+ * 			Han Min Thu
+ * @version 25-November-2016
+ */
+public class PollServer
+   {
+
+   /**
+    * Main program.
+    */
+   public static void main
+      (String[] args)
+      throws Exception
+      {
+      // Parse command line arguments.
+      if (args.length != 2) usage();
+      String serverhost = args[0];
+      int serverport = Integer.parseInt (args[1]);
+
+      // Set up server mailbox.
+      DatagramSocket mailbox = new DatagramSocket
+         (new InetSocketAddress (serverhost, serverport));
+
+      // Set up model and client reader thread.
+      PollServer model = new PollServer();
+      ServerReaderThread reader = new ServerReaderThread (mailbox, model);
+      reader.start();
+      }
+
+   /**
+    * Print a usage message and exit.
+    */
+   private static void usage()
+      {
+      System.err.println ("Usage: java DnsServer <serverhost> <serverport>");
+      System.exit (1);
+      }
+
+   }

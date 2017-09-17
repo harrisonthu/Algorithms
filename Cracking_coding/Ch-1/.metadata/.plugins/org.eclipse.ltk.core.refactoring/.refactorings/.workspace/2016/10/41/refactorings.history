@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;OnCampusInterviewPreparation&apos; to &apos;ElementsOfProgrammingInterview&apos;" description="Rename resource &apos;OnCampusInterviewPreparation&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/OnCampusInterviewPreparation" name="ElementsOfProgrammingInterview" stamp="1475723384383" updateReferences="true"/>
+</session>

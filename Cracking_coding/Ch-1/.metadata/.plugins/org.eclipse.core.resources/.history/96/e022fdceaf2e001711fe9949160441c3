@@ -1,0 +1,32 @@
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
+
+import edu.rit.util.Hex;
+
+public class Reporter {
+
+	public static void main(String[] args) throws SocketException {
+		
+
+		if (args.length != 6)
+			usage();
+		String rhost = args[0];
+		int rport = Integer.parseInt(args[1]);
+		byte[] key = Hex.toByteArray(args[2]);
+
+		DatagramSocket mailbox = new DatagramSocket(new InetSocketAddress(rhost, rport));
+		
+		
+		
+	}
+	
+	
+	/**
+	 * Print a usage message and exit.
+	 */
+	private static void usage() {
+		System.err.println("Usage: java Reporter <rhost> <rport> <key>");
+		System.exit(1);
+	}
+}

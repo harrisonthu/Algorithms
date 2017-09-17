@@ -1,0 +1,111 @@
+import javax.swing.*;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.List;
+
+/**
+ * Created by hmt4224 on 4/8/2017.
+ * Create Model for Server Side
+ */
+
+
+public class Model implements ViewListener{
+
+    private ModelListener modelListener1;
+    private ModelListener modelListener2;
+    private int numplayers;
+    private String playername1;
+    private String playername2;
+    private String hiddenstring;
+    private String correctstring;
+    private String incorrectstring;
+    private List<String> wordlist;
+    private int turns = 0;  // 0 - first player , -1 = 2nd player
+
+
+    public Model(List<String> wordlist){
+        this.wordlist = wordlist;
+
+    }
+
+    /*
+    Check Two player to create a session
+    Server creates a new session and adds the client to that session;
+    The client then waits to start playing until another client joins the session.
+     */
+
+
+    /**
+     * Set the view listener object for this WordzUI.
+     *
+     */
+    public void setModelListener(ModelListener modelListener1, ModelListener modelListener2)
+    {
+        this.modelListener1 = modelListener1;
+        this.modelListener2 = modelListener2;
+
+    }
+
+
+
+    public void start(){
+        //String name, String words, String guesses, boolean whowins
+
+        int lenn = wordlist.size();
+        int n = (int) Math.random()*lenn ;
+        String myrandomwordlist = wordlist.get(n);
+        hiddenstring = myrandomwordlist;
+        String correctstring = new String();
+
+        for(int i=0;i<hiddenstring.length();i++){
+            correctstring += "*";
+        }
+        incorrectstring = "";
+        System.out.println("Hiddenstring: "+hiddenstring);
+        modelListener1.update(playername1,correctstring,myrandomwordlist,false);
+        modelListener2.update(playername2,correctstring,myrandomwordlist,false);
+    }
+
+    public void quit(){
+        modelListener1.quit();
+        modelListener2.quit();
+    }
+
+    public void pressedletters(char c, int turns){
+        String temp = new String();
+        correctstring = correctstring.toLowerCase();
+        for(int i=0;i<correctstring.toLowerCase().length();i++){
+
+            if(correctstring.charAt(i) ==c){
+                temp += c;
+            }
+            else{
+                temp += hiddenstring.charAt(i);
+            }
+            if(turns == 0){
+                turns = -1;
+            }
+            else{
+                turns = 0;
+            }
+        } //for loop
+
+        if(!temp.equals(hiddenstring)){
+            if(!hiddenstring.contains(c+ "")){
+                incorrectstring += c;
+            }
+            turns = -1;
+        }
+        hiddenstring = temp;
+        if(!hiddenstring.contains("*")){
+            modelListener1.update(playername1,hiddenstring,temp,true);
+            modelListener2.update(playername2,hiddenstring,temp,true);
+        }
+        else{
+            modelListener1.update(playername1,hiddenstring,temp,false);
+            modelListener2.update(playername2,hiddenstring,temp,false);
+        }
+    }
+
+
+}

@@ -1,0 +1,29 @@
+
+import java.io.IOException;
+
+
+public class PrintThread implements Runnable{
+	
+	
+	 public void run(){	 
+		 // one line of code
+		 System.out.println();
+		 
+		 
+		 monitor m = new monitor(n);
+	     try{
+	    	 for(int i=)
+		 
+	     }
+	     catch(InterruptedException exception){
+	            exception.printStackTrace();
+	     }
+          finally{
+        	  
+          }
+	
+
+	 }
+	 
+
+}

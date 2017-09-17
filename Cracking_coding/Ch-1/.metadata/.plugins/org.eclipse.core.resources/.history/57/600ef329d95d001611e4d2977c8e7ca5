@@ -1,0 +1,40 @@
+package Chapter2;
+
+import java.util.HashSet;
+
+public class problem1 {
+
+	public Node RemoveDuplicates(Node head,int value){
+		Node prev = null;
+		Node current = head;
+		HashSet<Integer> myhashset = new HashSet<>();
+		while(current != null){
+			if(myhashset.contains(current.data)){
+				prev.next = current.next;
+			}
+			else{
+				myhashset.add(current.data);
+				prev = current;
+			}
+			current = current.next;
+			
+			
+			
+		}
+		return head;
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

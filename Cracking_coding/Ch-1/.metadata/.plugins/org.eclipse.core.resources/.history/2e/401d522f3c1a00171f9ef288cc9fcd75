@@ -1,0 +1,25 @@
+
+public class a3q3p1 {
+
+	
+	public boolean validArray(int[] nums){
+		boolean flag = false;
+		
+		
+		
+		
+		return flag;
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	
+
+}

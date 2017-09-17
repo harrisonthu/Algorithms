@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Microsoft"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="secondprobonepoint"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="E-A P-B J-C X-D A-E F-F R-G T-H W-I D-J I-K O-L C-M N-N Y-O G-P K-Q H-R L-S Q-T M-U U-V S-W V-X Z-Y B-Z"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Microsoft"/>
+</launchConfiguration>

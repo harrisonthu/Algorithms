@@ -1,0 +1,21 @@
+
+import java.io.IOException;
+import java.io.Serializable;
+
+/**
+ * Class ModelListenerMessage is the abstract base class for a message object
+ * sent to a ModelListener in the Password Crack Application. This is a
+ * server-to-client message.
+ *
+ */
+
+
+public class ModelListenerMessage {
+
+	public void process(ModelListener modelListener) {
+		
+		
+		
+	}
+
+}

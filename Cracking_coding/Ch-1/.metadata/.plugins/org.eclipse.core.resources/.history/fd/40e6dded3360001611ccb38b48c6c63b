@@ -1,0 +1,26 @@
+package Chapter2;
+
+public class problem1version2 {
+
+	public problem1version2(LinkedListNode head){
+		if(head == null){
+			return;
+		}
+		
+		LinkedListNode current = head;
+		LinkedListNode runner = current;
+		
+		
+	}
+	
+	
+	public static void main(String[] args) {
+
+
+		
+		
+		
+		
+	}
+
+}

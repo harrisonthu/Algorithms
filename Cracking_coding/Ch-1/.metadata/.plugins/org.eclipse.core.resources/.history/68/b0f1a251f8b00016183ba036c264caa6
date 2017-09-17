@@ -1,0 +1,102 @@
+//******************************************************************************
+//
+// File:    FireSensorState.java
+// Package: ---
+// Unit:    Enum FireSensorState
+//
+// This Java source file is copyright (C) 2016 by Alan Kaminsky. All rights
+// reserved. For further information, contact the author, Alan Kaminsky, at
+//
+// This Java source file is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 3 of the License, or (at your option) any
+// later version.
+//
+// This Java source file is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
+//
+// You may obtain a copy of the GNU General Public License on the World Wide Web
+// at http://www.gnu.org/licenses/gpl.html.
+//
+//******************************************************************************
+
+import java.awt.Color;
+
+/**
+ * Enum FireSensorState enumerates the possible states of a fire sensor in the
+ * Fire Alarm Simulation.
+ *
+ * @author	
+ * 		Han Min Thu
+ * 			
+ * @version 22-November-2016
+ */
+public enum PollSensorState
+   {
+
+// Exported enumerals.
+
+   ALL_CLEAR ("All clear", new Color (0xE8E8E8)),
+   COMM_FAIL ("Communication failure", new Color (0xFFFF00));
+
+// Hidden data members.
+
+   private String label;
+   private Color bgColor;
+
+// Hidden constructors.
+
+   private FireSensorState
+      (String label,
+       Color bgColor)
+      {
+      this.label = label;
+      this.bgColor = bgColor;
+      }
+
+// Exported operations.
+
+   /**
+    * Get the label for this fire sensor state.
+    *
+    * @return  Label.
+    */
+   public String label()
+      {
+      return label;
+      }
+
+   /**
+    * Get the background color for this fire sensor state.
+    *
+    * @return  Background color.
+    */
+   public Color bgColor()
+      {
+      return bgColor;
+      }
+
+   /**
+    * Returns a string version of this fire sensor state.
+    */
+   public String toString()
+      {
+      return label;
+      }
+
+   /**
+    * Get the fire sensor state enumeral corresponding to the given value.
+    *
+    * @param  fire  True if there's a fire, false if not.
+    *
+    * @return  Fire sensor state enumeral.
+    */
+   public static FireSensorState stateFor
+      (boolean fire)
+      {
+      return fire ? FIRE : ALL_CLEAR;
+      }
+
+   }

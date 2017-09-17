@@ -1,0 +1,45 @@
+import java.io.IOException;
+
+public class GobbleModelClone implements ModelListener{
+	
+	private GobbleBoard board = new GobbleBoard();
+	private ModelListener modelListener;
+	
+	
+	public GobbleModelClone(){
+		
+	}
+	
+	public GobbleBoard getBoard(){
+		return board;
+	}
+	
+	public void setModelListener(ModelListener modelListener){
+		this.modelListener = modelListener;
+	}
+
+
+	@Override
+	public void terminate() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPlayer(int p) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void turnSwitch(int p) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+	
+	
+}

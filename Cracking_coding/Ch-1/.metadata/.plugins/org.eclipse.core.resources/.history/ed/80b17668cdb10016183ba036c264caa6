@@ -1,0 +1,29 @@
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class ResponderModel implements ViewListener {
+	String question = "";
+	private long ptime;	
+	PollModel pollmodel;
+	PollState myvote;
+	
+	public ResponderModel(String vote){
+		this.myvote = PollState.NEITHER;
+	}
+	
+	@Override
+	public void vote(PollState lastvote, PollState newvote, long questiontime) throws IOException {
+		pollmodel.vote(lastvote, PollState.AGREE, questiontime);
+	}
+
+	@Override
+	public void ChangeQuestion(String newQuestion, long questiontime) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+
+}

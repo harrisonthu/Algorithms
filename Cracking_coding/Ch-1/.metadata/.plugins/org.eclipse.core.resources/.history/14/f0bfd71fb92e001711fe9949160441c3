@@ -1,0 +1,75 @@
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
+import java.nio.charset.Charset;
+
+import edu.rit.util.Hex;
+
+/**
+ * Reporter's application protocol uses UDP at the Transport Layer.
+ * 
+ * @author han
+ */
+public class Reporter {
+
+	
+	
+	/**
+	 * 
+	 * After decrypting the ciphertext, the Reporter program 
+	 * convert the byte array to a message String
+	 * @param args
+	 * @throws SocketException
+	 */
+	public static void main(String[] args) throws SocketException {
+
+		if (args.length != 3)
+			usage();
+		String rhost = args[0];
+		int rport = Integer.parseInt(args[1]);
+		byte[] key = Hex.toByteArray(args[2]);
+
+		DatagramSocket mailbox = new DatagramSocket(new InetSocketAddress(rhost, rport));
+		byte[] payload = new byte[1024];
+
+		RC4 rc4 = new RC4();
+
+		// Run the program until the message received it 
+		while (true) {
+			DatagramPacket dp = new DatagramPacket(payload, payload.length);
+
+			try {
+				mailbox.receive(dp);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// Pick random 16-byte nonce
+			byte[] nonce = new byte[16];
+
+			for (int i = 0; i < 15; i++) {
+				nonce[i] = payload[i];
+			}
+
+			rc4.setKey(key, nonce);
+
+			for (int i = 16; i < dp.getLength(); i++) {
+				payload[i] = (byte) rc4.decrypt(payload[i]);
+			}
+
+			String msg = new String(payload, 16, dp.getLength() - 16, Charset.forName("UTF-8"));
+			System.out.println(msg);
+		}
+
+	}
+
+	/**
+	 * Print a usage message and exit.
+	 */
+	private static void usage() {
+		System.err.println("Usage: java Reporter <rhost> <rport> <key>");
+		System.exit(1);
+	}
+}

@@ -1,0 +1,93 @@
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class ViewProxy implements ModelListener {
+
+	// Hidden data members.
+
+	private Socket socket;
+	private PrintStream out;
+	private Scanner in;
+	private ViewListener viewListener;
+
+	// Exported constructors.
+
+	/**
+	 * Construct a new view proxy.
+	 *
+	 * @param socket
+	 *            Socket.
+	 *
+	 * @exception IOException
+	 *                Thrown if an I/O error occurred.
+	 */
+	public ViewProxy(Socket socket) throws IOException {
+		this.socket = socket;
+		socket.setTcpNoDelay(true);
+		out = new PrintStream(socket.getOutputStream());
+		in = new Scanner(socket.getInputStream());
+	}
+
+	public static void main(String[] args) {
+		
+	}
+
+	
+	/**
+	 * Class ReaderThread receive message from network and listen over the
+	 * network.
+	 *
+	 */
+	private class ReaderThread extends Thread {
+		public void run() {
+			try {
+				for (; in.hasNextLine();) {
+					String s = in.nextLine();
+					// Reading message from DataObject
+
+					switch (s.charAt(0)) {
+					case 'q':
+						modelListener.quit();
+						break;
+					case 'u':
+						String[] params = s.split(" ");
+						modelListener.update(params[1], params[2], params[3], Boolean.parseBoolean(params[4]));
+						break;
+						default:
+							System.err.println("Error reading Message");
+					}
+				}
+			} catch (Exception exc) {
+				exc.printStackTrace();
+			} finally {
+				try {
+					socket.close();
+				} catch (IOException exc) {
+
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	@Override
+	public void update(String name, String words, String guesses, boolean whowins) {
+		out.println('l' + " " + c + " " + turns);
+
+	}
+
+	@Override
+	public void quit() {
+		out.println('q');
+	}
+
+	@Override
+	public String getName() {
+		return null;
+	}
+
+}

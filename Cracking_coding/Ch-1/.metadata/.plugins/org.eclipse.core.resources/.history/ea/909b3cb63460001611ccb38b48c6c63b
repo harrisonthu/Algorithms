@@ -1,0 +1,46 @@
+package Chapter2;
+
+import java.util.LinkedList;
+
+public class problem1version2 {
+
+	public static void problem1version2(LinkedList head){
+		if(head == null){
+			return;
+		}
+		
+		Node current = (Node) head.getFirst();
+		
+		while(current != null){
+			Node runner = current;
+			while(runner.next != null){
+				if(runner.next.data == current.data){
+					runner.next = runner.next.next;
+				}
+				else{
+					runner= runner.next;
+				}
+			}
+			current = current.next;
+		}
+		
+	}
+
+	
+	public static void main(String[] args) {
+		
+		LinkedList myll = new LinkedList();
+		myll.add(5);
+		myll.add(7);
+		myll.add(4);
+		myll.add(3);
+		myll.add(9);
+		System.out.println(myll);
+		problem1version2(myll);
+		
+		
+	}
+
+
+
+}

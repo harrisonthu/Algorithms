@@ -1,0 +1,25 @@
+import java.awt.Color;
+import java.io.IOException;
+
+public interface ModelListener {
+	
+	//quit
+	public void terminate()throws IOException;
+	
+		
+	public void turnSwitch(int p) throws IOException;
+	
+	
+	public void disenabled(int row,int col) throws IOException;
+	
+	
+	public void moves(int row, int col, Color color) throws IOException;
+	
+	public void enabled(int row,int col) throws IOException;
+	
+	//public void sendMessage(String message) throws IOException;
+	
+	//public void newGame() throws IOException;
+	
+	//public void 
+}

@@ -1,0 +1,39 @@
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+/**
+ * Created by hmt4224 on 4/8/2017.
+// */
+
+public class Wordz {
+    static WordzUI wordzui;
+
+
+    public static void main (String [] args) throws Exception{
+
+        if (args.length != 3) usage();
+        String host = args[0];
+        int port = Integer.parseInt (args[1]);
+        String playername = (String) (args [2]);
+        
+        Socket socket = new Socket();
+        socket.connect(new InetSocketAddress (host,port));
+        
+        
+        //ServerSocket serversocket = new ServerSocket();
+        //serversocket.bind (new InetSocketAddress(host, port));
+        WordzUI.create(playername);
+    }
+
+    /**
+     * Print a usage message and exit.
+     */
+    private static void usage()
+    {
+        System.err.println ("Usage: java Wordz <host> <port> <playername>");
+        System.exit (1);
+    }
+
+}

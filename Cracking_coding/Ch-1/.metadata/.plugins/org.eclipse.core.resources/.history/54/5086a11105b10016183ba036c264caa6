@@ -1,0 +1,127 @@
+//******************************************************************************
+//
+// File:    ViewProxy.java
+// Package: ---
+// Unit:    Class ViewProxy
+//
+// This Java source file is copyright (C) 2016 by Alan Kaminsky. All rights
+// reserved. For further information, contact the author, Alan Kaminsky, at
+// ark@cs.rit.edu.
+//
+// This Java source file is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 3 of the License, or (at your option) any
+// later version.
+//
+// This Java source file is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+// details.
+//
+// You may obtain a copy of the GNU General Public License on the World Wide Web
+// at http://www.gnu.org/licenses/gpl.html.
+//
+//******************************************************************************
+
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+/**
+ * Class ViewProxy provides the network proxy for the view object in the Fire
+ * Alarm Simulation. The view proxy resides in the server program and
+ * communicates with the client program.
+ *
+ * @author  Alan Kaminsky
+ * @version 14-Oct-2016
+ */
+public class ViewProxy
+   {
+
+// Hidden data members.
+
+   private DatagramSocket mailbox;
+   private ViewListener viewListener;
+
+// Exported constructors.
+
+   /**
+    * Construct a new view proxy.
+    *
+    * @param  mailbox  Mailbox.
+    *
+    * @exception  IOException
+    *     Thrown if an I/O error occurred.
+    */
+   public ViewProxy
+      (DatagramSocket mailbox)
+      {
+      this.mailbox = mailbox;
+      }
+
+// Exported operations.
+
+   /**
+    * Set the view listener object for this view proxy.
+    *
+    * @param  viewListener  View listener.
+    */
+   public void setViewListener
+      (ViewListener viewListener)
+      {
+      this.viewListener = viewListener;
+      new ReaderThread() .start();
+      }
+
+// Hidden helper classes.
+
+   /**
+    * Class ReaderThread receives messages from the network, decodes them, and
+    * invokes the proper methods to process them.
+    */
+   private class ReaderThread
+      extends Thread
+      {
+      public void run()
+         {
+         byte[] payload = new byte [1024]; /* CAREFUL OF BUFFER SIZE! */
+         String location;
+         long timestamp;
+         boolean fire;
+         try
+            {
+            for (;;)
+               {
+               DatagramPacket packet =
+                  new DatagramPacket (payload, payload.length);
+               mailbox.receive (packet);
+               DataInputStream in =
+                  new DataInputStream
+                     (new ByteArrayInputStream
+                        (payload, 0, packet.getLength()));
+               byte b = in.readByte();
+               switch (b)
+                  {
+                  case 'R':
+                     location = in.readUTF();
+                     timestamp = in.readLong();
+                     fire = in.readBoolean();
+                     viewListener.report (location, timestamp, fire);
+                     break;
+                  default:
+                     System.err.println ("Bad message");
+                     break;
+                  }
+               }
+            }
+         catch (IOException exc)
+            {
+            exc.printStackTrace (System.err);
+            System.exit (1);
+            }
+         }
+      }
+
+   }

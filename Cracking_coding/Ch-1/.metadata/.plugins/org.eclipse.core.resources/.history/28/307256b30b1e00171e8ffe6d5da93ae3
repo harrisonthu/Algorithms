@@ -1,0 +1,14 @@
+/**
+ * Created by hmt4224 on 4/8/2017.
+ */
+
+
+interface ViewListener {
+
+    void start();
+
+    void quit();
+
+    void pressedletters(char c, int turns);
+
+}

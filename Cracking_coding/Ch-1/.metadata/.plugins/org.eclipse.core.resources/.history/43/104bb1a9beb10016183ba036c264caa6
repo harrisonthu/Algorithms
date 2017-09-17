@@ -1,0 +1,121 @@
+
+/*
+ * PollModel class
+ */
+
+public class PollModel implements ViewListener {
+	String question = "";
+	private long ptime;	// ptime = aku msg ya te time
+	int agreeCounter;
+	int disagreeCounter;
+	
+	
+	
+	public PollModel (){
+		this.agreeCounter =0;
+		this.disagreeCounter =0;
+		
+	}
+	/* (non-Javadoc)
+	 * @see ViewListener#vote(java.lang.String, java.lang.String, long)
+	 * THINGTOREMEMBER: questiontime: de question ka bel ah chain hti last long(see fire alarm notes)
+	 */
+	public void vote(String lastvote, String newvote,long questiontime){
+		
+		if(questiontime < ptime){	//see more at fire alarm diagram 
+			
+			switch(lastvote){
+				case "neither":
+					break;
+				case "agree":
+					agreeCounter--;
+					break;
+				case "disagree":
+					disagreeCounter--;
+					break;
+			}
+			
+			switch(newvote){
+				case "agree":
+					agreeCounter++;
+					break;
+				case "disagree":
+					disagreeCounter++;
+					break;
+				case "neither":
+					break;
+		}
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see ViewListener#ChangeQuestion(java.lang.String, long)
+	 */
+	public void ChangeQuestion(String newquestion,long questiontime){
+		
+		
+	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public synchronized String getQuestion() {
+		return question;
+	}
+
+	/**
+	 * @param question
+	 */
+	public synchronized void setQuestion(String question) {
+		this.question = question;
+	}
+
+	/**
+	 * @return
+	 */
+	public synchronized long getPtime() {
+		return ptime;
+	}
+
+	/**
+	 * @param ptime
+	 */
+	public synchronized void setPtime(long ptime) {
+		this.ptime = ptime;
+	}
+
+	/**
+	 * @return
+	 */
+	public synchronized int getAgreeCounter() {
+		return agreeCounter;
+	}
+
+	/**
+	 * @param agreeCounter
+	 */
+	public synchronized void setAgreeCounter(int agreeCounter) {
+		this.agreeCounter = agreeCounter;
+	}
+
+	/**
+	 * @return
+	 */
+	public synchronized int getDisagreeCounter() {
+		return disagreeCounter;
+	}
+
+	/**
+	 * @param disagreeCounter
+	 */
+	public synchronized void setDisagreeCounter(int disagreeCounter) {
+		this.disagreeCounter = disagreeCounter;
+	}
+
+	
+	
+	
+	
+}

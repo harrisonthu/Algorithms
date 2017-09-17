@@ -1,0 +1,68 @@
+import java.util.LinkedList;
+
+public class GobbleModel {
+
+	//private static final int firstPlayerArrived=1;
+	//private static final int secondPlayerArrived=2;
+	//private static int[][] board = new int[4][4];
+	private int playerturns;
+	private GobbleBoard gboard = new GobbleBoard();
+	private String player1,player2;
+	private ModelListener ml1,ml2;
+	private int activeplayer;
+	
+	public GobbleModel(){
+		
+		
+	}
+
+
+	public void setModelListener(ViewProxy proxy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public int getPlayerturns() {
+		return playerturns;
+	}
+
+
+	public void setPlayerturns(int playerturns) {
+		this.playerturns = playerturns;
+	}
+
+
+	public String getPlayer1() {
+		return player1;
+	}
+
+
+	public void setPlayer1(String player1, ViewProxy vp) {
+		this.player1 = player1;
+		
+	}
+
+
+	public String getPlayer2() {
+		return player2;
+	}
+
+
+	public void setPlayer2(String player2) {
+		this.player2 = player2;
+	}
+
+
+	public int getActiveplayer() {
+		return activeplayer;
+	}
+
+
+	public void setActiveplayer(int activeplayer) {
+		this.activeplayer = activeplayer;
+	}
+	
+	
+	
+}

@@ -1,0 +1,53 @@
+
+public class Median_of_Two_Sorted_Arrays {
+	
+	
+	public static void main(String[] args) {
+		
+		int[] nums1 = {1,3,5,7};
+		int[] nums2 = {2, 4, 6};
+		int[] temp = new int[nums1.length+ nums2.length];
+		int index_max;
+		if(nums1.length < nums2.length){
+			index_max = nums1.length;
+		}
+		else{
+			index_max = nums2.length;
+		}
+		
+		
+		int i, j =0;
+		for(int k =0;k<index_max;k++){
+			
+			if(i<nums1.length && j< nums2.length){
+				if(nums1[i]< nums2[j]){
+					temp[k] = nums1[i];
+					i++;
+				}
+				else{
+					temp[k] = nums2[j];
+					j++;
+				}
+			}
+			
+			else if (k<nums1.length){
+				temp[k] = nums1[i];
+				i++;
+			}
+			else{
+				temp[k] = nums2[j];
+				j++;
+			}
+			
+		}
+		
+		
+		
+		
+		
+		for(int i=0;i<temp.length;i++){
+			System.out.println(temp[i]);
+		}
+	}
+
+}

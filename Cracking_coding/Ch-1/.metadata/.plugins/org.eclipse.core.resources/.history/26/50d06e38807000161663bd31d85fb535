@@ -1,0 +1,219 @@
+
+public class Project1 {
+	
+	
+	public static int mod(int dividend, int divisor){
+		int quotient = dividend/divisor;
+		//System.out.println("quotient "+quotient);
+		int temp = quotient*divisor;
+		int result = dividend - temp;
+		return result; 
+	}
+	// My own implementation
+	public static int sqrt(int value){
+		int temp = 1;
+		int s1,s2,s3;
+		int result=0;
+		while(temp<value){
+			s1 = temp*temp; 	 // s1 is left side of s2 <= value < (s+1)^2
+			s2 = temp+1;	
+			s3 = s2*s2;			 // s3 is right side of the equation above
+			if(s1<=value && s3>value){
+				result = temp;	
+				break;// TODO break out of the while loop when found
+			}
+			temp++;
+		}
+		return result;
+	}
+	
+	/*
+	 * http://www.geeksforgeeks.org/square-root-of-a-perfect-square/
+	 * 
+	 */
+	public static int sqrt3(int value){
+		int x = value;
+		int y = 1;
+		while(x>y){
+			x = (x+y)/2;
+			y = value/x;
+		}
+		return x;
+	}
+
+	// My own implementation
+	public static int cbrt(int value){
+		int pos = value*(-1);
+		int temp = 1;
+		int s1,s2,s3,n;
+		boolean negative; 				// need to FIXED
+		if(value<0){
+			negative = true;
+		}else{
+			negative = false;
+		}
+		if(negative){		// value is negative
+			n = -value;
+		}else{
+			n = value;
+		}
+		if(!negative){
+			while(temp<=value){
+				s1 = temp*temp*temp; 	 // s1 is left side of s2 <= value < (s+1)^2
+				s2 = temp+1;	
+				s3 = s2*s2*s2;			 // s3 is right side of the equation above
+				if(s1<=n && s3>n){
+					return temp;
+				}
+				temp++;
+			}
+		}
+		while(temp<=pos){
+			s1 = temp*temp*temp; 	 // s1 is left side of s2 <= value < (s+1)^2
+			s2 = temp+1;	
+			s3 = s2*s2*s2;			 // s3 is right side of the equation above
+			if(s1<=n && s3>n){
+				return temp*(-1);
+			}
+			temp++;
+		}
+		return 0;		// TODO: check with professor (if not found situation)
+	}
+	
+	// Use reference from
+	//http://stackoverflow.com/questions/13673600/how-to-write-a-simple-java-program-that-finds-the-greatest-common-divisor-betwee
+	// TODO: Ask professor why max is not getting the smallest greatest common divisor
+	
+	/* FROM SLIDES
+	 * int main(){
+	 * 		int a,b;
+	 * while(i != b){
+	 * 	if(i >j)
+	 */
+	public static int gcd(int a, int b){
+		int max =100000;
+	    if(b>a){
+	        for(int i = b; i >=1; i--){
+	            if(mod(b,i)==0 && mod(a,i) ==0){
+	            	if(i<max){
+	            		max = i;
+	            	}
+	            	return i;
+	            }
+	        }
+	    }
+	    else{
+	        for(int j = a; j >=1; j--){
+	            if(a%j==0 && b% j==0){
+	                if (j>max){
+	                	max = j;
+	                }
+	                return j;
+	            }
+	        }
+	    }   
+	    return max;
+	}
+	
+	public static int  lcm(int a, int b){
+		int greatestcd = gcd(a,b);
+		return a *(b/greatestcd);
+	}
+	
+	
+	// Use reference from
+	// http://crunchify.com/java-bubble-sort-algorithm-ascending-order-sample/
+	public static int[] sort(int[] ints){
+		int temp;
+		int lenn = ints.length;
+		
+		for(int i=0;i<lenn-1;i++){
+			for(int j=i+1;j<lenn;j++){
+				 if(ints[i] > ints[j]){
+					 temp=ints[i];
+					 ints[i]= ints[j];
+					 ints[j] = temp;
+				 }
+			}
+		}
+		return ints;
+	}
+	
+	public static int max(int[] ints){
+		int maximum = -1;
+		
+		for(int i=0;i<ints.length;i++){
+			if(ints[i]>maximum){
+				maximum = ints[i];
+			}
+		}
+		return maximum;
+	}
+	
+	public static int min(int[] ints){
+		int minimum = 10000000;
+		
+		for(int i=0;i<ints.length;i++){
+			if(ints[i]<minimum){
+				minimum = ints[i];
+			}
+		}
+		return minimum;
+	}
+	
+	//TODO: no boolean, 
+	
+	public static int inList(int[] ints, int value){
+		//boolean inlist = false;
+		int isin = 0;		// 0 === false;
+		
+		
+		for(int i=0;i< ints.length;i++){
+			if(ints[i]== value){
+				isin = 1; // return 1;
+			}
+		}
+		return isin;
+		
+		// int 0 ==> false;
+		// int 1 ==> true;
+	}
+	
+	public static int avgList(int[] ints){
+		int elements=0;
+		int total=0;
+		int result;
+		
+		for(int i=0;i<ints.length;i++){
+			total += ints[i];
+			elements++;
+		}
+		result = total/elements;
+		return result;	
+	}
+	
+	public static int medList(int[] ints){
+		int[] sorted = sort(ints);
+		int lenn = ints.length;
+		int middle = 0;
+		int result = 0;
+		if(mod(lenn,2)==0){		// even
+			int midindex = lenn/2;
+			middle = ints[midindex] + ints[midindex-1];
+			result = (int)middle/2;
+		}else{
+			int midindex = (lenn-1)/2;
+			result = (int) ints[midindex];
+		}
+		return result;
+	}
+	
+//	
+//	public static void main(String [] args){
+//
+//		
+//	}
+	
+	
+	
+}

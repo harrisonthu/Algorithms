@@ -1,0 +1,47 @@
+import java.math.BigInteger;
+
+public class GobbleServer {
+
+	
+	public static void main(String[] args) {
+		if (args.length != 2){
+            System.err.println("Not enough Argument!");
+            usage();
+        }
+        else{
+            int p;
+            final BigInteger pbi= new BigInteger(args[0]);
+            int g;
+            final BigInteger gbi = new BigInteger(args[1]);
+            boolean isprime;
+            p = Integer.parseInt(args[0]);
+            //check p is prime
+            isprime = pbi.isProbablePrime(64);
+
+            if(p>=2){
+                if(!isprime){
+                    System.err.println("P must be Prime");
+                    usage(); }
+            }
+            else{ System.err.println("P must be greater than 2");
+                usage();
+            }
+
+            g = Integer.parseInt(args[1]);
+
+            if(!(g>=1 && g <= p-1)){
+                System.err.println("g must be an integer (type int) in the range 1 ≤ g ≤ p−1");
+                usage();
+            }	
+	}
+		
+}
+	
+	private static void usage(){
+		System.err.println("Usage: java GobbleServer <host> <port>");
+		System.exit(1);
+	}
+	
+	
+	
+	

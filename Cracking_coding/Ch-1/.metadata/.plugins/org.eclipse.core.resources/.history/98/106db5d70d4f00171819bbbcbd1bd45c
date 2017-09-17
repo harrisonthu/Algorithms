@@ -1,0 +1,23 @@
+
+public class Median_of_Two_Sorted_Arrays {
+	
+	
+	public static void main(String[] args) {
+		
+		int[] nums1 = {1,3,5,7};
+		int[] nums2 = {2, 4, 6};
+		
+		int index;
+		
+		if(nums1.length < nums2.length){
+			index = nums1.length;
+		}
+		else{
+			index = nums2.length;
+		}
+		
+		
+		
+	}
+
+}

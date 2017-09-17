@@ -1,0 +1,56 @@
+
+import java.io.IOException;
+
+/**
+ * Interface ModelListener specifies the interface for an object that is
+ * triggered by events from the model object in the Gobble Game Application.
+ *
+ */
+
+public interface ModelListener {
+
+	   /**
+	    * Report that the password cracking computation started.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void started()
+	      throws IOException;
+
+	   /**
+	    * Report the progress of the password cracking computation.
+	    *
+	    * @param  percent  Percent progress (0 .. 100).
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void progress
+	      (int percent)
+	      throws IOException;
+
+	   /**
+	    * Report that the password was found.
+	    *
+	    * @param  password  Password.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void found
+	      (String password)
+	      throws IOException;
+
+	   /**
+	    * Report that the password cracking computation stopped.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void stopped()
+	      throws IOException;
+
+	   }
+	
+	

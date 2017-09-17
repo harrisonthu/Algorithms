@@ -1,0 +1,29 @@
+
+public class a3q3p2 {
+	
+	
+	
+	public int minStep(int[] nums){
+		int prev = 0;
+		int steps = 0;
+		int max_furthest = -1;
+		int max_delta 
+		
+		
+		return -1;		// no way to reach last element
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,28 @@
+
+import java.io.IOException;
+
+/**
+ * Interface ViewListener specifies the interface for an object that is
+ * triggered by events from the view object in the Gobble Game Application.
+ *
+ * @author  Han Min Thu
+ * @version 21-October-2016
+ */
+public interface ViewListener {
+
+	   /**
+	    * Start the process for viewing between Server and Client.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void start(byte[] hash)throws IOException;
+
+	   /**
+	    * Stop the password cracking process.
+	    *
+	    */
+	   public void stop()throws IOException;
+	
+
+}

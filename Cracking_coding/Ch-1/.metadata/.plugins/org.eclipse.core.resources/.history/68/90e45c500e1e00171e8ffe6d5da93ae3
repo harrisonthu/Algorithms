@@ -1,0 +1,79 @@
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+/**
+ * 
+ * ModelProxy class implementing ViewListener
+ * 
+ * @author han
+ *
+ */
+public class ModelProxy implements ViewListener {
+
+	private Socket socket;
+	private Scanner in;
+	private PrintStream out;
+	private ModelListener modelListener;
+
+	public ModelProxy(Socket socket) throws IOException {
+		this.socket = socket;
+		out = new PrintStream(socket.getOutputStream());
+		in = new Scanner(socket.getInputStream());
+	}
+
+	/**
+	 * Set the model listener object for this model proxy.
+	 * 
+	 * @param modelListener
+	 *            Model Listener
+	 * @throws IOException
+	 */
+	public void setModelListener(ModelListener modelListener) throws IOException {
+		this.modelListener = modelListener;
+		out.println(modelListener.getName());
+		new ReaderThread().start();
+	}
+
+	/**
+	 * Class ReaderThread receive message from network and listen over the
+	 * network.
+	 *
+	 */
+	private class ReaderThread extends Thread {
+		public void run() {
+			try {
+				for (;;) {
+
+					// Reading message from DataObject
+				}
+			} catch (Exception exc) {
+				exc.printStackTrace();
+			} finally {
+				try {
+					socket.close();
+				} catch (IOException exc) {
+
+				}
+			}
+		}
+	}
+
+	public void start() throws IOException {
+		out.println('s');
+
+	}
+
+	@Override
+	public void quit() throws IOException {
+		out.println('q');
+
+	}
+
+	@Override
+	public void pressedletters(char c, int turns) {
+		out.println('l'+ " "+ c +" "+ turns);
+	}
+
+}

@@ -1,0 +1,19 @@
+import java.io.IOException;
+
+public interface ModelListener {
+	
+	
+	public void terminate()throws IOException;
+	
+	
+	public void setPlayer(int p) throws IOException;
+		
+		
+	public void turnSwitch(int p) throws IOException;
+	
+	
+	
+	
+	
+
+}

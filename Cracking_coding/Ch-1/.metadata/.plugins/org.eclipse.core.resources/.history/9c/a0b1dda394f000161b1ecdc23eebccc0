@@ -1,0 +1,174 @@
+import java.math.BigInteger;
+
+/**
+ * Class SortNet provides eight-element sorting network. 
+ * The twist is that each comparator will be implemented 
+ * as a separate thread. The program takes eight integers 
+ * from the command line, runs the sorting network on those 
+ * inputs, and prints the outputs.
+ *
+ * @author  Han Min Thu
+ * @version 05-February-2017
+ */
+
+
+public class SortNet {
+
+	public static void main(String[] args) throws Throwable {
+		int x0;
+		int x1;
+		int x2;
+		int x3;
+		int x4;
+		int x5;
+		int x6;
+		int x7;
+
+		if (args.length != 8) {
+			usage();
+		} else {
+			
+			try{
+			      x0 = new Integer(args[0]);
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + "<a> =  illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }
+			
+
+		      try{
+			      x1 = new Integer(args[1]); 
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + " <b> = illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }  
+		
+		      try{
+			      x2 = new Integer(args[2]); 
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + " <c> = illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }
+		      
+		      
+		      try{
+			      x3 = new Integer(args[3]); 
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + " <d> = illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }  
+		      
+		      
+		      try{
+			      x4 = new Integer(args[4]); 
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + " <e> = illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }  
+		      
+		      
+		      try{
+			      x5 = new Integer(args[5]); 
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + " <f> = illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }  
+		      
+		      try{
+			      x6 = new Integer(args[6]); 
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + " <g> = illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }  
+		      
+		      
+		      try{
+			      x7 = new Integer(args[7]); 
+		      }
+		      catch(NumberFormatException f){
+		    	  System.err.println( f + " <h> = illegal");
+		    	  usage();
+		      }
+		      catch(IllegalArgumentException e){
+		    	  System.err.println(e);
+		    	  usage();
+		      }
+		      catch(Exception e){
+		    	  usage();
+		      }  
+		      
+		      
+		      
+		      
+		      
+		      
+		      
+		}
+	}
+
+
+	/**
+	 * Print a usage message and exit.
+	 */
+	private static void usage(){
+		System.err.println ("Usage: java SortNet <x0> <x1> <x2> <x3> <x4> <x5> <x6> <x7> <x8>");
+        System.exit (0);
+	}	
+	
+}

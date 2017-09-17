@@ -1,0 +1,43 @@
+
+public class a3q3p2 {
+	
+	
+	
+	public static int minStep(int[] nums){
+		int prev = 0;
+		int steps = 0;
+		int max_furthest = -1;
+		int max_delta = 0;
+		int delta;
+		
+		for(int i=1; i<nums.length;i++){
+			if(i>nums[prev]+prev){
+				if(max_furthest==-1){
+					return -1;
+				}
+				else{
+					prev = max_furthest;
+					max_furthest = -1;
+					steps++;
+					max_delta =0;
+				}
+			}
+			delta = i-prev+nums[i];
+			if(delta >max_delta){
+				max_delta = delta;
+				max_furthest =i;
+			}
+		}
+		
+		return steps+1;		// no way to reach last element
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		int[] input = {3,2,1,0,0};
+		System.out.println(minStep(input));
+		
+	}
+
+}

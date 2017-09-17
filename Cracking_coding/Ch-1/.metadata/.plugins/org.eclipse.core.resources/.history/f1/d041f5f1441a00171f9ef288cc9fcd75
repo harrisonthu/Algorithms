@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class a3q1 {
+
+	public List<Integer> evalAritExpr(String input){
+//		List myresult = new int [2];
+		ArrayList<Integer> myarray = new ArrayList<>();
+		if(input != '+' || input != '-' || input != '*'){
+			return myresult;
+		}
+		
+		if (input.equals("+")) {
+		    System.out.println("The result is " + (a + b));
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String input = "1-1-1";
+		
+	}
+
+}

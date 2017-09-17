@@ -1,0 +1,28 @@
+
+/**
+ * Enum PollState enumerates the possible states of a poll state in the Poll
+ * Simulation.
+ * 
+ * @author han
+ *
+ */
+public enum PollState {
+
+	Neither("neither");Agree("agree");Disagree("disagree");
+
+	private String result;
+
+	private PollState(newresult){
+		this.result= newresult;
+	}
+
+	/**
+	    * Get the label for this fire sensor state.
+	    *
+	    * @return  Label.
+	*/
+    public String result(){
+      return newresult;
+      }
+
+}

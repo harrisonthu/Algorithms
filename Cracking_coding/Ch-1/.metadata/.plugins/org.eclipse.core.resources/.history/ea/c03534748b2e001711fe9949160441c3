@@ -1,0 +1,45 @@
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.SocketException;
+
+import edu.rit.util.Hex;
+
+public class Leaker {
+	
+	private SocketAddress destination;
+	
+	
+	public static void sendMessage (String senderlocation, String destination){
+		
+		
+		
+	}
+
+	public static void main(String[] args) throws SocketException {
+		if (args.length != 6)
+			usage();
+		String rhost = args[0];
+		int rport = Integer.parseInt(args[1]);
+		String lhost = args[2];
+		int lport = Integer.parseInt(args[3]);
+		byte[] key = Hex.toByteArray(args[4]);
+		String msg = new String(args[5]);
+
+		DatagramSocket mailbox = new DatagramSocket(new InetSocketAddress(lhost, lport));
+		
+		
+
+	}
+
+	/**
+	 * Print a usage message and exit.
+	 */
+	private static void usage() {
+		System.err.println("Usage: java WordzServer <host> <port> <file>");
+		System.exit(1);
+	}
+
+}

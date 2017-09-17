@@ -1,0 +1,25 @@
+
+public class a3q3p2 {
+	
+	
+	
+	public int minStep(int[] nums){
+		
+		
+		return -1;		// no way to reach index 4
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

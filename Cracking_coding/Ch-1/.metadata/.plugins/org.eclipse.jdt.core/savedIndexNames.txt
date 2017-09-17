@@ -1,0 +1,19 @@
+INDEX VERSION 1.127+/home/han/GIT/Cracking_coding/Ch-1/.metadata/.plugins/org.eclipse.jdt.core
+4283831159.index
+3395883707.index
+4179082957.index
+1534767490.index
+516414046.index
+735331147.index
+3307086881.index
+932639205.index
+2242950461.index
+79531950.index
+797586709.index
+1773669715.index
+3650654409.index
+138724918.index
+631078565.index
+2698701462.index
+4039371887.index
+112221927.index

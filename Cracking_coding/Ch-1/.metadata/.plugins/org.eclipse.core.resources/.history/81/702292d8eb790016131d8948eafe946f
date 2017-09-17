@@ -1,0 +1,39 @@
+import java.math.BigInteger;
+
+
+
+public class Fib {
+	PrintThread myprintthread;
+	ComputeThread mycomputethread;
+	Monitor mymonitor;
+	
+	
+	
+	/*
+	 * A main program. 
+	 * The main program must start the threads in this order: first the output printing thread, 
+	 * then the thread that computes the last array element, then the thread that computes the next-to-last array element,
+	 * and so on backwards through the array elements. The main program must not wait for the threads to terminate
+	 */
+	
+	// TODO: Ask Professor: do I need to create Usage method for incorrect arguments
+	public static void main(String[] args)throws Throwable{
+	      if (args.length != 3){
+	    	  System.exit(1);
+	      }
+	      else{
+		      String a_temp = args[0];	
+		      BigInteger a = new BigInteger(a_temp);
+		      String b_temp = args[1];
+		      BigInteger b = new BigInteger(b_temp);
+		      int N = Integer.parseInt(args[2]);
+	      }
+	      
+	      
+		
+		
+		
+		
+	}
+
+}

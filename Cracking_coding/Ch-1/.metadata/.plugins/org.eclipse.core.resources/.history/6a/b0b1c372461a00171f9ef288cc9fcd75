@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class a3q1 {
+
+	public List<Integer> evalAritExpr(String input){
+//		List myresult = new int [2];
+		ArrayList<Integer> myarray = new ArrayList<>();
+		List<Integer> left,right;
+		if(input != '+' || input != '-' || input != '*'){
+			return myresult;
+		}
+		
+		for(int i=0;i<input.length();i++){
+			if(input.charAt(i) == '+' || input.charAt(i) == '-' || input.charAt(i) == '*'){
+				left = evalAritExpr(input.substring(0,i));
+				right = evalAritExpr(input.substring(i+1,input.length()));
+			}
+		}
+		System.out.println(left);
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String input = "1-1-1";
+		
+	}
+
+}

@@ -1,0 +1,14 @@
+
+
+
+//TODO runnable
+// TODO ASK professor for hints
+public class ComputeThread implements Runnable {	// 
+	
+	Monitor mymonitor = new Monitor();
+	
+	
+	
+	
+
+}

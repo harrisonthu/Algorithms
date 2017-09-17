@@ -1,0 +1,30 @@
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class ResponderModel implements ViewListener {
+	String question = "";
+	private long ptime;	// ptime = aku msg ya te time
+	int agreeCounter;
+	int disagreeCounter;
+	private ArrayList<ModelListener> responders;
+	
+	
+	
+
+	@Override
+	public void vote(String fromwhere, String towhere, long questiontime) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ChangeQuestion(String newQuestion, long questiontime) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+
+}

@@ -1,0 +1,74 @@
+
+import java.math.BigInteger;
+import pj2.lib.edu.rit.pj2.Loop;
+import pj2.lib.edu.rit.pj2.Task;
+
+
+public class Order extends Task {
+	
+
+public void main(String args[]){
+	
+	int p;
+	BigInteger pbi;
+	int g;
+	BigInteger gbi;
+	boolean isprime;
+	
+    if (args.length != 2){
+  	  usage();
+    }
+    else{
+    	//p = new BigInteger(args[0]);
+    	//g = new BigInteger(args[1]);
+    	p = Integer.parseInt(args[0]);
+    	
+    	//check p is prime
+    	isprime = pbi.isProbablePrime(64);
+    	
+    	if(p>=2){
+    		if(!isprime){
+    			System.err.println("P must be Prime");
+    			usage();
+    		}
+    	}
+    	else{
+    		System.err.println("P must be greater than 2");
+    		usage();
+    	}
+    	
+    	g = Integer.parseInt(args[1]);
+    	
+    	
+    	if(!(g>=1 && g <= p-1)){
+    		System.err.println("it must be an integer (type int) in the range 1 ≤ g ≤ p−1");
+    		usage();
+    	}
+    	
+    	// should I execute every single integer and return the first one that I got 1 for mod??
+    	
+    	
+    	
+        parallelFor (1, p-1) .exec (new Loop(){
+            public void run (int i) {
+                BigInteger exponent = new BigInteger(String.valueOf(i));
+                BigInteger.valueOf(i) = g.modPow(exponent, p);
+            }
+        });
+    	
+    }
+
+	
+}
+
+}
+
+private static void usage(){
+    System.exit (0);
+}
+
+
+    
+    
+}
+

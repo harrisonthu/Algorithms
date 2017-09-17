@@ -1,0 +1,47 @@
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by hmt4224 on 4/8/2017.
+// */
+
+public class Wordz {
+    static WordzUI wordzui;
+
+
+    public static void main (String [] args) throws Exception{
+
+        if (args.length != 3) usage();
+        String host = args[0];
+        int port = Integer.parseInt (args[1]);
+        String playername = (String) (args [2]);
+        
+        Socket socket = new Socket();
+        socket.connect(new InetSocketAddress (host,port));
+        
+        List<String> wordlis = new ArrayList<String>();
+        wordlis.add("BANANA");
+        wordlis.add("APPLE");
+        wordlis.add("ORANGE");
+        wordlis.add("SAMSUNG");
+        Model mymodel;
+        mymodel= new Model(wordlis);
+        
+        
+        WordzUI.create(playername);
+    }
+
+    /**
+     * Print a usage message and exit.
+     */
+    private static void usage()
+    {
+        System.err.println ("Usage: java Wordz <host> <port> <playername>");
+        System.exit (1);
+    }
+
+}

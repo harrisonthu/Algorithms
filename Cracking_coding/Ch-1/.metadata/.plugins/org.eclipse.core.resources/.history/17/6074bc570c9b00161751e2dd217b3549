@@ -1,0 +1,27 @@
+
+import java.io.IOException;
+import java.io.Serializable;
+
+
+/**
+ * Abstract Class ViewListenerMessage is the abstract base class for a message object
+ * sent to a ViewListener in the Password Crack Application. This is a
+ * client-to-server message.
+ *
+ */
+
+public abstract class ViewListenerMessage implements Serializable{
+
+	   /**
+	    * Process this message in the given view listener.
+	    *
+	    * @param  viewListener  View listener.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public abstract void process(ViewListener viewListener)
+	      throws IOException;
+
+	
+}

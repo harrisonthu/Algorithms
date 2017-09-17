@@ -1,0 +1,52 @@
+
+import java.io.IOException;
+
+/**
+ * Interface ModelListener specifies the interface for an object that is
+ * triggered by events from the model object in the Gobble Game Application.
+ *
+ */
+
+public interface ModelListener {
+
+	   /**
+	    * Report that the Gobble Game started.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void started()throws IOException;
+
+	   /**
+	    * Report the progress of the Game networking.
+	    *
+	    * @param  server side and client side
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void hasmoved (GobbleServer server, GobbleUI client)
+	      throws IOException;
+
+	   /**
+	    *
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void found
+	      (String password)
+	      throws IOException;
+
+	   /**
+	    * Report that the password cracking computation stopped.
+	    *
+	    * @exception  IOException
+	    *     Thrown if an I/O error occurred.
+	    */
+	   public void stopped()
+	      throws IOException;
+
+	   }
+	
+	

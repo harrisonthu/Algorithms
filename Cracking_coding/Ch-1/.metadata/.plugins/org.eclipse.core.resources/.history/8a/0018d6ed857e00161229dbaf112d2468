@@ -1,0 +1,62 @@
+import java.math.BigInteger;
+
+
+/**
+ * Class Fib is the main program for the Generalized Fibonacci Number. 
+ * It is a multithreaded Java program to compute Fibonacci number specified by the parameters a and b and the argument n, 
+ * using the array-based (F). The program gets the parameters from the command line.
+ *
+ * @author  Han Min Thu
+ * @version 11-Sep-2016
+ */
+
+public class Fib {
+	
+	/*
+	 * A main program. 
+	 * The main program must start the threads in this order: first the output printing thread, 
+	 * then the thread that computes the last array element, then the thread that computes the next-to-last array element,
+	 * and so on backwards through the array elements. The main program must not wait for the threads to terminate
+	 */
+	
+	public static void main(String[] args)throws Throwable{
+	      if (args.length != 3){
+	          System.err.println ("Usage: Command line does not have the required number of arguments");
+	    	  System.exit(1);
+	      }
+	      else{
+		      String a_temp = args[0];
+		      BigInteger a = new BigInteger(a_temp);
+		      if(a.compareTo(BigInteger.ZERO) <= 0){
+		    	  usage();
+		      }
+
+		      String b_temp = args[1];
+		      BigInteger b = new BigInteger(b_temp);
+		      if(b.compareTo(BigInteger.ZERO) <= 0){
+		    	  usage();
+		      }
+		      
+		      int N = Integer.parseInt(args[2]);
+		      if(N<0){
+		    	  System.err.println ("N must be an integer greater than 0");
+		    	  System.exit(1);
+		      }
+		      Monitor mymonitor  = new Monitor(N);
+		      PrintThread myprintthread = new PrintThread(N,mymonitor);
+		      Thread newthread = new Thread(myprintthread);
+		      newthread.start();
+		      for(int i=N;i>=0;i--){
+		    	  ComputeThread mycomputethread = new ComputeThread(i, mymonitor, a, b);
+		    	  Thread cthread = new Thread(mycomputethread);
+		    	  cthread.start();
+		      }
+	      }
+	}
+	
+	private static void usage(){
+		System.err.println ("Usage: Invalid command line error ! ");
+        System.exit (1);
+	}
+	
+}

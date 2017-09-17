@@ -1,0 +1,104 @@
+
+/*
+ * PollModel class
+ */
+
+public class PollModel implements ViewListener {
+	String question = "";
+	private long ptime;
+	int agreeCounter;
+	int disagreeCounter;
+	
+	
+	
+	public PollModel (){
+		this.agreeCounter =0;
+		this.disagreeCounter =0;
+		
+	}
+	/* (non-Javadoc)
+	 * @see ViewListener#vote(java.lang.String, java.lang.String, long)
+	 */
+	public void vote(String lastvote, String newvote,long votetime){
+		
+		
+		if(lastvote.equals("neither") && newvote.equals("agree")){
+			
+		}
+		
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see ViewListener#ChangeQuestion(java.lang.String, long)
+	 */
+	public void ChangeQuestion(String newquestion,long ptime){
+		
+		
+	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public synchronized String getQuestion() {
+		return question;
+	}
+
+	/**
+	 * @param question
+	 */
+	public synchronized void setQuestion(String question) {
+		this.question = question;
+	}
+
+	/**
+	 * @return
+	 */
+	public synchronized long getPtime() {
+		return ptime;
+	}
+
+	/**
+	 * @param ptime
+	 */
+	public synchronized void setPtime(long ptime) {
+		this.ptime = ptime;
+	}
+
+	/**
+	 * @return
+	 */
+	public synchronized int getAgreeCounter() {
+		return agreeCounter;
+	}
+
+	/**
+	 * @param agreeCounter
+	 */
+	public synchronized void setAgreeCounter(int agreeCounter) {
+		this.agreeCounter = agreeCounter;
+	}
+
+	/**
+	 * @return
+	 */
+	public synchronized int getDisagreeCounter() {
+		return disagreeCounter;
+	}
+
+	/**
+	 * @param disagreeCounter
+	 */
+	public synchronized void setDisagreeCounter(int disagreeCounter) {
+		this.disagreeCounter = disagreeCounter;
+	}
+
+	
+	
+	
+	
+}

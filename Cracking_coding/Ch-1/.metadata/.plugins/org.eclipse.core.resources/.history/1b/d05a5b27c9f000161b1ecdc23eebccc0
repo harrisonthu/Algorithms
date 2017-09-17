@@ -1,0 +1,50 @@
+
+/**
+ * Class CLAThread is the command line arguments into sorting network program.
+ * It is a multithreaded Java program to compute sorting number specified by the
+ * parameters a and b and the argument n, . The program gets the parameters from
+ * the command line.
+ *
+ * @author Han Min Thu
+ * @version 11-Febrary-2017
+ */
+
+public class CLAThread implements Runnable {
+	String[] args;
+	Monitor mymonitor;
+
+	/**
+	 * Creates a new CLA thread object that print the final output
+	 * 
+	 * @param args
+	 *            arguments in the array.
+	 * @param mymonitor
+	 *            Create mymonitor instance.
+	 */
+	public CLAThread(String[] args, Monitor mymonitor) {
+		this.args = args;
+		this.mymonitor = mymonitor;
+	}
+
+	/*
+	 * run method to be called in that separately executing thread. Print out
+	 * after all of the results.
+	 */
+	@Override
+	public void run(){
+		try{
+		mymonitor.putValue(0, Integer.parseInt(args[0]));
+		mymonitor.putValue(1, Integer.parseInt(args[1]));
+		mymonitor.putValue(2, Integer.parseInt(args[2]));
+		mymonitor.putValue(3, Integer.parseInt(args[3]));
+		mymonitor.putValue(4, Integer.parseInt(args[4]));
+		mymonitor.putValue(5, Integer.parseInt(args[5]));
+		mymonitor.putValue(6, Integer.parseInt(args[6]));
+		mymonitor.putValue(7, Integer.parseInt(args[7]));
+		}
+		catch(NumberFormatException nfe){
+			nfe.printStackTrace();
+		}
+	}
+
+}

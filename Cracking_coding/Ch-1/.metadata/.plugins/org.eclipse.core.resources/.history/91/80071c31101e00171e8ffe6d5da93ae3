@@ -1,0 +1,53 @@
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class ViewProxy implements ModelListener {
+
+	// Hidden data members.
+
+	private Socket socket;
+	private PrintStream out;
+	private Scanner in;
+	private ViewListener viewListener;
+
+	// Exported constructors.
+
+	/**
+	 * Construct a new view proxy.
+	 *
+	 * @param socket
+	 *            Socket.
+	 *
+	 * @exception IOException
+	 *                Thrown if an I/O error occurred.
+	 */
+	public ViewProxy(Socket socket) throws IOException {
+		this.socket = socket;
+		socket.setTcpNoDelay(true);
+		out = new PrintStream(socket.getOutputStream());
+		in = new Scanner(socket.getInputStream());
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+	@Override
+	public void update(String name, String words, String guesses, boolean whowins) {
+		out.println('l' + " " + c + " " + turns);
+
+	}
+
+	@Override
+	public void quit() {
+		out.println('q');
+	}
+
+	@Override
+	public String getName() {
+		return null;
+	}
+
+}

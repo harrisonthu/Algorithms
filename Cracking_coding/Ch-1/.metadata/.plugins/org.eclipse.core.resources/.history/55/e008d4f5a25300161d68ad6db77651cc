@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class problem5 {
+	
+	
+	
+	public static String compressString(String str){
+		String result = "";
+		char[] inputstr = str.toCharArray();
+		char first = inputstr[0];
+		int counter =1;
+		for(int i=0;i<inputstr.length;i++){
+			if(str.charAt(i)== first){
+				counter++;
+			}
+			else{
+				result += first + ""+ counter;
+				first = str.charAt(i);
+				counter = 1;
+			}
+		}
+		if(result.length()<str.length()){
+			return str;
+		}
+		
+		return result;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str= sc.nextLine();
+		System.out.println(compressString(str));
+
+		
+	}
+
+}

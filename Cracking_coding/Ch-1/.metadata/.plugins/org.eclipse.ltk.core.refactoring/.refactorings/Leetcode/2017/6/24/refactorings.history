@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;index&apos; in &apos;Median_of_Two_Sorted_Arrays.main(...)&apos; to &apos;index_max&apos;&#x0A;- Original project: &apos;Leetcode&apos;&#x0A;- Original element: &apos;Median_of_Two_Sorted_Arrays.main(String[]).index&apos;&#x0A;- Renamed element: &apos;index&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;index&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{Median_of_Two_Sorted_Arrays.java[Median_of_Two_Sorted_Arrays~main~\[QString;@index!201!210!205!209!I!0!false" name="index_max" references="true" stamp="1497235796259" version="1.0"/>
+</session>

@@ -1,0 +1,37 @@
+//******************************************************************************
+//
+// File:    ModelListener.java
+// Package: ---
+// Unit:    Interface ModelListener
+//
+//******************************************************************************
+
+import java.io.IOException;
+
+/**
+ * Interface ModelListener specifies the interface to an object that receives
+ * notifications from the model in the Fire Alarm Simulation.
+ *
+ * @author  Han Min Thu
+ * @version 22-November-2016
+ */
+public interface ModelListener
+   {
+
+// Exported operations.
+
+   /**
+    * Report the fire sensor state for the given location.
+    *
+    * @param  location  Fire sensor location.
+    * @param  state     Fire sensor state.
+    *
+    * @exception  IOException
+    *     Thrown if an I/O error occurred.
+    */
+   public void reportState
+      (String location,
+       FireSensorState state)
+      throws IOException;
+
+   }

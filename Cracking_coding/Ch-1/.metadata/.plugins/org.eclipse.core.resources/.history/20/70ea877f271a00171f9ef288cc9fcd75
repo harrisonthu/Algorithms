@@ -1,0 +1,17 @@
+import java.util.List;
+
+public class a3q1 {
+
+	public List<Integer> evalAritExpr(String input){
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
